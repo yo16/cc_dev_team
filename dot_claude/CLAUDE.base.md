@@ -125,7 +125,7 @@ PMはサブエージェントを逐次呼び出し、ワークフローを制御
 | バックエンドエンジニア | `backend-engineer.md` | API Routes、サーバーサイドロジック |
 | DB設計エンジニア | `db-designer.md` | 汎用スキーマ設計、マイグレーション戦略 |
 | Supabaseスペシャリスト | `supabase-specialist.md` | DB実装+Auth+RLS、Supabase MCP操作 |
-| WEBデザイナー | `web-designer.md` | CSS/Tailwind、レスポンシブ、ビジュアル |
+| WEBデザイナー | `web-designer.md` | CSS Modules、レスポンシブ、ビジュアル |
 | インフラエンジニア | `infra-engineer.md` | Vercelデプロイ、CI/CD、環境変数 |
 | セキュリティスペシャリスト | `security-specialist.md` | 脆弱性監査、認証/認可レビュー |
 

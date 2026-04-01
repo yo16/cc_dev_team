@@ -10,7 +10,7 @@
 - デプロイ: Vercel
 - タスク管理: Beads
 - テスト: Jest + Playwright
-- スタイリング: Tailwind CSS
+- スタイリング: CSS Modules（Tailwind CSS は禁止）
 <!-- 必要に応じて変更・追加してください -->
 
 ## Git戦略
