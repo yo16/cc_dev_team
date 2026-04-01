@@ -44,6 +44,7 @@
       "Bash(npx supabase *)",
 
       "Bash(mkdir *)",
+      "Bash(rm tmp/*)",
       "Bash(ls)",
       "Bash(ls *)",
       "Bash(pwd)",

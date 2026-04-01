@@ -9,11 +9,37 @@ PMはサブエージェントを逐次呼び出し、ワークフローを制御
 
 **これはすべてのエージェントに適用される絶対ルールである。**
 
+### ルール1: コマンドチェイン禁止
 - `&&`, `;`, `|` 等で複数のコマンドをチェインして実行してはならない
 - 理由: `settings.json` の `permissions.allow` パターンマッチはコマンド先頭にマッチするため、チェインされたコマンドは許可パターンに合致せず、毎回ユーザーに許可を求めてしまう
 - 複数のコマンドが必要な場合は、1つずつ個別に実行すること
 - 違反例: `cd src && npm test` / `git add . && git commit -m "msg"` / `npm run build | tee log.txt`
 - 正しい例: `git add .` を実行した後、別のBash呼び出しで `git commit -m "msg"` を実行
+
+### ルール2: 複数行引数は外部ファイル経由（厳守）
+- Bashコマンドは必ず**単一行**で実行すること。複数行のコマンドは `permissions.allow` にマッチしない
+- コミットメッセージやタスク説明など、複数行のテキストが必要な場合は `tmp/` フォルダに一時ファイルを書き出し、コマンドからそのファイルを参照する
+- `tmp/` フォルダが存在しない場合は `mkdir tmp` で作成すること
+
+#### git commit の場合
+```bash
+# 1. Writeツールで tmp/commit-msg.txt にメッセージを書く
+# 2. 単一行コマンドで実行
+git commit -F tmp/commit-msg.txt
+# 3. 一時ファイルを削除
+rm tmp/commit-msg.txt
+```
+
+#### bd create / bd update の場合
+```bash
+# 1. Writeツールで tmp/bd-body.md にタスク説明を書く
+# 2. 単一行コマンドで実行
+bd create --type task --title "タスクタイトル" --body-file tmp/bd-body.md
+# 3. 一時ファイルを削除
+rm tmp/bd-body.md
+```
+
+**ヒアドキュメント（`<<EOF`）、バッククォート内改行、`$(...)`内改行は すべて禁止。**
 
 ## エージェント呼び出しルール
 
