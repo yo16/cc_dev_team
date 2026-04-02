@@ -52,10 +52,12 @@ PMはサブエージェントを逐次呼び出し、ワークフローを制御
 ### フェーズ1: 設計
 
 1. ユーザーが要件定義ドキュメントを作成する（配置先は「プロジェクト固有設定」セクションを参照）
-2. PM → 設計エージェント(`design-architect`): 要件を読み、設計ドキュメントを作成
+2. PM → フレームワークスペシャリスト: 技術スタックに応じたアーキテクチャ方針の助言を得る
+   - Next.js → `nextjs-specialist` / React + Vite → `react-vite-specialist`
+3. PM → 設計エージェント(`design-architect`): スペシャリストの助言を踏まえ、要件を読み、設計ドキュメントを作成
    - 作成する設計ドキュメントの一覧は「プロジェクト固有設定」セクションを参照
-3. PM → ユーザー: 設計レビュー依頼、不明点があれば確認
-4. PM → Beads管理者(`beads-manager`): 設計ドキュメントからタスク分解、依存関係設定、階層構造作成
+4. PM → ユーザー: 設計レビュー依頼、不明点があれば確認
+5. PM → Beads管理者(`beads-manager`): 設計ドキュメントからタスク分解、依存関係設定、階層構造作成
 
 ### フェーズ2: 開発（タスクごと）
 
@@ -75,6 +77,7 @@ PMはサブエージェントを逐次呼び出し、ワークフローを制御
   - スタイリング → `web-designer`
   - インフラ → `infra-engineer`
   - セキュリティ → `security-specialist`
+- フレームワーク固有の判断が必要な場合は、PM → スペシャリスト(`nextjs-specialist` or `react-vite-specialist`)に相談
 
 #### ステップ3: コードレビュー
 - PM → 該当するコードレビュアー: git logで変更内容を確認し、Beads要件と照合
@@ -142,15 +145,21 @@ PMはサブエージェントを逐次呼び出し、ワークフローを制御
 | Beads管理者 | `beads-manager.md` | タスク作成・更新・依存関係・ロールバック管理 |
 | Git管理者 | `git-manager.md` | ブランチ・コミット・マージ・Worktree管理 |
 
+### フレームワークスペシャリスト層
+| エージェント | ファイル | 役割 |
+|---|---|---|
+| Next.jsスペシャリスト | `nextjs-specialist.md` | Next.js固有の設計・実装アドバイザー |
+| React+Viteスペシャリスト | `react-vite-specialist.md` | React+Vite (SPA) 固有の設計・実装アドバイザー |
+
 ### 実装層
 | エージェント | ファイル | 役割 |
 |---|---|---|
-| フロントエンドエンジニア | `frontend-engineer.md` | React/Next.js コンポーネント、ページ実装 |
-| バックエンドエンジニア | `backend-engineer.md` | API Routes、サーバーサイドロジック |
+| フロントエンドエンジニア | `frontend-engineer.md` | Reactコンポーネント、ページ実装 |
+| バックエンドエンジニア | `backend-engineer.md` | API/データアクセス層、サーバーサイドロジック |
 | DB設計エンジニア | `db-designer.md` | 汎用スキーマ設計、マイグレーション戦略 |
 | Supabaseスペシャリスト | `supabase-specialist.md` | DB実装+Auth+RLS、Supabase MCP操作 |
 | WEBデザイナー | `web-designer.md` | CSS Modules、レスポンシブ、ビジュアル |
-| インフラエンジニア | `infra-engineer.md` | Vercelデプロイ、CI/CD、環境変数 |
+| インフラエンジニア | `infra-engineer.md` | デプロイ設定、CI/CD、環境変数 |
 | セキュリティスペシャリスト | `security-specialist.md` | 脆弱性監査、認証/認可レビュー |
 
 ### レビュー層

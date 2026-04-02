@@ -5,13 +5,23 @@
 
 ## 技術スタック
 
+以下からフレームワークを選択し、不要な方を削除してください。
+
+### 選択肢A: Next.js（SSR/SSG対応、API Routes同居、SEO重要な場合）
 - フレームワーク: Next.js (App Router)
-- DB/Auth: Supabase
 - デプロイ: Vercel
+
+### 選択肢B: React + Vite（SPA、管理画面・ダッシュボード、軽量な場合）
+- フレームワーク: React + Vite
+- ルーティング: react-router-dom
+- デプロイ: Vercel / Netlify / Cloudflare Pages / その他
+
+### 共通
+- DB/Auth: Supabase
 - タスク管理: Beads
-- テスト: Jest + Playwright
+- テスト: Jest（+ Playwright: E2Eが必要な場合）
 - スタイリング: CSS Modules（Tailwind CSS は禁止）
-<!-- 必要に応じて変更・追加してください -->
+<!-- 不要な選択肢を削除し、1つに確定してください -->
 
 ## Git戦略
 
@@ -39,12 +49,12 @@
 
 - `doc/design/overview.md`: 設計概要（各ドキュメントへのリンク集）
 - `doc/design/app-architecture.md`: アプリ構成、ページ構成、状態管理
-- `doc/design/api-design.md`: API Routes一覧、リクエスト/レスポンス定義
+- `doc/design/api-design.md`: API設計（Next.js: API Routes / React+Vite: Supabaseクエリ設計）
 - `doc/design/db-design.md`: スキーマ設計、ER図、インデックス戦略
 - `doc/design/supabase-design.md`: RLSポリシー、Auth設定、Supabase固有設計
 - `doc/design/frontend-design.md`: コンポーネント設計、ページ遷移
 - `doc/design/styling-design.md`: デザインシステム、カラー、タイポグラフィ
-- `doc/design/infra-design.md`: Vercel設定、環境変数、CI/CD
+- `doc/design/infra-design.md`: デプロイ設定、環境変数、CI/CD
 - `doc/design/security-design.md`: 認証フロー、脆弱性対策方針
 <!-- Supabaseを使わない場合は supabase-design.md を削除してください -->
 <!-- Vercel以外のデプロイ先を使う場合は infra-design.md の説明を変更してください -->
