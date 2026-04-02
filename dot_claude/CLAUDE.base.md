@@ -20,26 +20,24 @@ PMはサブエージェントを逐次呼び出し、ワークフローを制御
 - Bashコマンドは必ず**単一行**で実行すること。複数行のコマンドは `permissions.allow` にマッチしない
 - コミットメッセージやタスク説明など、複数行のテキストが必要な場合は `tmp/` フォルダに一時ファイルを書き出し、コマンドからそのファイルを参照する
 - `tmp/` フォルダが存在しない場合は `mkdir tmp` で作成すること
+- **ヒアドキュメント（`<<EOF`）、バッククォート内改行、`$(...)`内改行はすべて禁止**
 
-#### git commit の場合
-```bash
-# 1. Writeツールで tmp/commit-msg.txt にメッセージを書く
-# 2. 単一行コマンドで実行
-git commit -F tmp/commit-msg.txt
-# 3. 一時ファイルを削除
-rm tmp/commit-msg.txt
+#### git commit の場合 — `git commit -F <file>` を使用
 ```
-
-#### bd create / bd update の場合
-```bash
-# 1. Writeツールで tmp/bd-body.md にタスク説明を書く
-# 2. 単一行コマンドで実行
-bd create --type task --title "タスクタイトル" --body-file tmp/bd-body.md
-# 3. 一時ファイルを削除
-rm tmp/bd-body.md
+手順: Writeツールで tmp/commit-msg.txt を作成 → git commit -F tmp/commit-msg.txt → rm tmp/commit-msg.txt
 ```
+`-F` オプションは外部ファイルからコミットメッセージを読み込むgit公式オプション。`-m` は使わないこと。
 
-**ヒアドキュメント（`<<EOF`）、バッククォート内改行、`$(...)`内改行は すべて禁止。**
+#### bd create の場合 — `bd create --body-file <file>` を使用
+```
+手順: Writeツールで tmp/bd-body.md を作成 → bd create --type task --title "タイトル" --body-file tmp/bd-body.md → rm tmp/bd-body.md
+```
+`--body-file` オプションは外部ファイルからタスク説明を読み込むBeads公式オプション。`-d` は使わないこと。
+
+#### bd update の場合 — `bd update --body-file <file>` を使用
+```
+手順: Writeツールで tmp/bd-body.md を作成 → bd update {id} --body-file tmp/bd-body.md → rm tmp/bd-body.md
+```
 
 ## エージェント呼び出しルール
 

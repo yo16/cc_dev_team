@@ -54,54 +54,69 @@ PMから「devからfeatureブランチを作成」と指示された場合:
 
 5. 結果をPMに報告
 
-## コミット
+## git CLIオプションリファレンス
+
+### 外部ファイル参照オプション
+| コマンド | オプション | 用途 |
+|---|---|---|
+| `git commit` | `-F <file>` | コミットメッセージを外部ファイルから読み込む |
+| `git commit` | `-m "短いメッセージ"` | 1行のみ（非推奨、`-F` を優先） |
+
+**`-F` はコミットメッセージを外部ファイルから読み込む公式オプション。常にこちらを使用すること。**
+
+## コミット — 具体的な手順
 
 PMから「featureブランチにコミット」と指示された場合:
 
-1. 変更を確認:
-   ```bash
-   git status
-   ```
+**ステップ1:** 変更を確認
+```bash
+git status
+```
 
-2. 差分を確認:
-   ```bash
-   git diff
-   ```
+**ステップ2:** 差分を確認
+```bash
+git diff
+```
 
-3. 変更をステージング（対象ファイルを明示的に指定）:
-   ```bash
-   git add {file1}
-   ```
-   ```bash
-   git add {file2}
-   ```
+**ステップ3:** 変更をステージング（対象ファイルを明示的に指定）
+```bash
+git add src/app/login/page.tsx
+```
+```bash
+git add src/app/api/auth/route.ts
+```
 
-4. コミットメッセージを一時ファイルに書き出す（Writeツールを使用）:
-   - ファイル: `tmp/commit-msg.txt`
-   - 内容例:
-     ```
-     feat: ユーザー認証APIの実装
-     ```
+**ステップ4:** Writeツールで `tmp/commit-msg.txt` にコミットメッセージを書く
 
-5. 一時ファイルを指定してコミット:
-   ```bash
-   git commit -F tmp/commit-msg.txt
-   ```
+単一行の場合:
+```
+feat: ユーザーログイン機能の実装
+```
 
-6. 一時ファイルを削除:
-   ```bash
-   rm tmp/commit-msg.txt
-   ```
+複数行の場合:
+```
+feat: ユーザーログイン機能の実装
 
-**注意: `git commit -m "..."` は単一行で収まる場合のみ使用可。複数行になる場合は必ず `-F` オプションで外部ファイルを使うこと。**
+- メールアドレスとパスワードによる認証
+- ログイン後のダッシュボードリダイレクト
+- Supabase Authとの連携
+```
+
+**ステップ5:** Bashで単一行コマンドを実行
+```bash
+git commit -F tmp/commit-msg.txt
+```
+
+**ステップ6:** 一時ファイルを削除
+```bash
+rm tmp/commit-msg.txt
+```
 
 ### コミットメッセージ規約
-- 形式: `{type}: {description}`
+- 1行目: `{type}: {description}`（サマリー）
 - type: `feat`, `fix`, `refactor`, `test`, `docs`, `style`, `chore`
 - description: 変更内容を簡潔に記述（日本語可）
-- 例: `feat: ユーザー認証APIの実装`
-- 例: `test: ログイン機能のE2Eテスト追加`
-- 複数行が必要な場合は、1行目にサマリー、空行、3行目以降に詳細を記載
+- 複数行の場合: 1行目にサマリー、空行、3行目以降に詳細
 
 ## devへのマージ
 
