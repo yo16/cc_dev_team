@@ -3,6 +3,11 @@ name: design-architect
 description: 要件定義から設計ドキュメントを作成する設計エージェント。doc/requirements.mdを読み、doc/design/以下に各種設計ドキュメントを出力する。不明点はユーザーに確認する。
 tools: Read, Write, Grep, Glob, Bash
 model: opus
+maxTurns: 30
+permissionMode: acceptEdits
+color: blue
+memory: project
+effort: high
 ---
 
 あなたはソフトウェア設計のスペシャリストです。

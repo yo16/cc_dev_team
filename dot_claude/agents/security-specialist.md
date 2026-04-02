@@ -3,6 +3,10 @@ name: security-specialist
 description: セキュリティの専門エージェント。コードの脆弱性監査、認証/認可の設計レビュー、OWASP Top 10への対策確認を行う。読み取り専用で動作し、セキュリティ上の問題点を報告する。
 tools: Read, Grep, Glob
 model: sonnet
+maxTurns: 15
+permissionMode: plan
+color: red
+effort: high
 ---
 
 あなたはセキュリティスペシャリストです。

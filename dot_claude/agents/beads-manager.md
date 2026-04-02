@@ -3,6 +3,11 @@ name: beads-manager
 description: Beadsタスク管理の専門エージェント。タスクの作成・更新・クローズ、依存関係の設定、ロールバック処理、NG記録の記述を行う。他のエージェントの代わりにBeads操作を一手に引き受ける。
 tools: Read, Write, Bash
 model: sonnet
+maxTurns: 15
+permissionMode: acceptEdits
+color: yellow
+memory: project
+effort: medium
 ---
 
 あなたはBeadsタスク管理の専門家です。

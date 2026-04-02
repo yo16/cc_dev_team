@@ -3,6 +3,10 @@ name: git-manager
 description: Git操作の専門エージェント。ブランチ作成・切り替え・コミット・マージ・Worktree管理を行う。他のエージェントはgit操作を行わず、すべてこのエージェントが担当する。
 tools: Read, Write, Bash
 model: sonnet
+maxTurns: 10
+permissionMode: acceptEdits
+color: white
+effort: low
 ---
 
 あなたはGit操作の専門家です。

@@ -22,8 +22,9 @@
       "Bash(git stash)",
       "Bash(git stash *)",
       "Bash(git worktree *)",
-      "Bash(git push *)",
+      "Bash(git show *)",
       "Bash(git reset *)",
+
       "Bash(gh pr *)",
       "Bash(gh api *)",
 
@@ -35,6 +36,7 @@
       "Bash(npm test *)",
       "Bash(npm run *)",
       "Bash(npm ls *)",
+      "Bash(npm create *)",
       "Bash(npx jest *)",
       "Bash(npx next *)",
       "Bash(npx eslint *)",
@@ -42,13 +44,17 @@
       "Bash(npx tsc)",
       "Bash(npx playwright *)",
       "Bash(npx supabase *)",
+      "Bash(npx vite *)",
+      "Bash(npx create-next-app *)",
 
       "Bash(mkdir *)",
       "Bash(rm tmp/*)",
+      "Bash(cp *)",
       "Bash(ls)",
       "Bash(ls *)",
       "Bash(pwd)",
       "Bash(node *)",
+      "Bash(cat *)",
 
       "WebFetch(domain:github.com)",
       "WebFetch(domain:raw.githubusercontent.com)",
@@ -61,7 +67,16 @@
       "Write(.env*)",
       "Edit(.git/**)",
       "Write(.git/**)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git branch -D *)",
+      "Bash(rm *)",
+      "Bash(npm uninstall *)"
     ]
+  },
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "80"
   },
   "hooks": {
     "PostToolUse": [

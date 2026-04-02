@@ -12,6 +12,11 @@ mcpServers:
       env:
         SUPABASE_URL: "${SUPABASE_URL}"
         SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"
+maxTurns: 20
+permissionMode: acceptEdits
+color: magenta
+memory: project
+effort: medium
 ---
 
 あなたはSupabaseの専門家です。

@@ -4,6 +4,10 @@ description: バックエンドテストの専門エージェント。API Routes
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
 isolation: worktree
+maxTurns: 20
+permissionMode: acceptEdits
+color: blue
+effort: medium
 ---
 
 あなたはバックエンドテストの専門家です。

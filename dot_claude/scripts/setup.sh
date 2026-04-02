@@ -13,6 +13,8 @@
 # 実行されること:
 #   - CLAUDE.base.md + CLAUDE.project.md → プロジェクトの CLAUDE.md に結合
 #   - agents/ → プロジェクトの .claude/agents/ にコピー
+#   - commands/ → プロジェクトの .claude/commands/ にコピー
+#   - rules/ → プロジェクトの .claude/rules/ にコピー
 #   - settings.json → プロジェクトの .claude/settings.json にコピー
 
 set -euo pipefail
@@ -57,6 +59,8 @@ echo ""
 
 # .claude ディレクトリ作成
 mkdir -p "$TARGET_CLAUDE_DIR/agents"
+mkdir -p "$TARGET_CLAUDE_DIR/commands"
+mkdir -p "$TARGET_CLAUDE_DIR/rules"
 
 # CLAUDE.md を結合生成
 echo "CLAUDE.md を生成中..."
@@ -72,17 +76,41 @@ echo "  → $PROJECT_DIR/CLAUDE.md"
 # agents をコピー
 echo "agents/ をコピー中..."
 cp "$DOT_CLAUDE_DIR/agents/"*.md "$TARGET_CLAUDE_DIR/agents/"
-echo "  → $TARGET_CLAUDE_DIR/agents/"
+echo "  → $TARGET_CLAUDE_DIR/agents/ ($(ls "$DOT_CLAUDE_DIR/agents/"*.md | wc -l) files)"
+
+# commands をコピー
+echo "commands/ をコピー中..."
+cp "$DOT_CLAUDE_DIR/commands/"*.md "$TARGET_CLAUDE_DIR/commands/"
+echo "  → $TARGET_CLAUDE_DIR/commands/ ($(ls "$DOT_CLAUDE_DIR/commands/"*.md | wc -l) files)"
+
+# rules をコピー
+echo "rules/ をコピー中..."
+cp "$DOT_CLAUDE_DIR/rules/"*.md "$TARGET_CLAUDE_DIR/rules/"
+echo "  → $TARGET_CLAUDE_DIR/rules/ ($(ls "$DOT_CLAUDE_DIR/rules/"*.md | wc -l) files)"
 
 # settings.json をコピー
 echo "settings.json をコピー中..."
 cp "$DOT_CLAUDE_DIR/settings.json" "$TARGET_CLAUDE_DIR/settings.json"
 echo "  → $TARGET_CLAUDE_DIR/settings.json"
 
+# tmp ディレクトリ作成
+mkdir -p "$PROJECT_DIR/tmp"
+echo "tmp/ を作成..."
+echo "  → $PROJECT_DIR/tmp/"
+
 echo ""
 echo "=== セットアップ完了 ==="
+echo ""
+echo "配置されたもの:"
+echo "  - CLAUDE.md (base + project 結合)"
+echo "  - .claude/agents/ (20 エージェント)"
+echo "  - .claude/commands/ (4 コマンド: /design, /dev-start, /dev-task, /dev-rollback)"
+echo "  - .claude/rules/ (2 ルール: bash-single-line, no-tailwind)"
+echo "  - .claude/settings.json"
+echo "  - tmp/ (一時ファイル用)"
 echo ""
 echo "次のステップ:"
 echo "  1. $PROJECT_DIR/CLAUDE.md の内容を確認してください"
 echo "  2. $TARGET_CLAUDE_DIR/settings.json のパーミッションを確認してください"
 echo "  3. Supabaseを使う場合は、環境変数 SUPABASE_URL, SUPABASE_SERVICE_KEY を設定してください"
+echo "  4. /design で設計フェーズを開始してください"

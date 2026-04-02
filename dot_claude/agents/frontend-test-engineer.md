@@ -4,6 +4,10 @@ description: フロントエンドテストの専門エージェント。React/N
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
 isolation: worktree
+maxTurns: 20
+permissionMode: acceptEdits
+color: blue
+effort: medium
 ---
 
 あなたはフロントエンドテストの専門家です。

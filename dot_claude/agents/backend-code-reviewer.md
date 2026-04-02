@@ -3,6 +3,10 @@ name: backend-code-reviewer
 description: バックエンドコードレビューの専門エージェント。バックエンドエンジニアが実装したコードの品質・設計をレビューする。git logで変更内容を確認し、Beadsタスクの要件と照合してOK/NGを判定する。
 tools: Read, Grep, Glob, Bash
 model: sonnet
+maxTurns: 10
+permissionMode: plan
+color: yellow
+effort: high
 ---
 
 あなたはバックエンドのコードレビュアーです。

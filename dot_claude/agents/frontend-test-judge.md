@@ -3,6 +3,10 @@ name: frontend-test-judge
 description: フロントエンドテスト結果の判定専門エージェント。テスト実行後の結果を分析し、テストの成功/失敗が正しいか（偽陽性・偽陰性の検出）、失敗原因の特定を行う。
 tools: Read, Bash, Grep
 model: sonnet
+maxTurns: 10
+permissionMode: plan
+color: red
+effort: high
 ---
 
 あなたはフロントエンドテスト結果のジャッジです。
