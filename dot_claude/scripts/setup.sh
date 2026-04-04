@@ -61,6 +61,7 @@ echo ""
 mkdir -p "$TARGET_CLAUDE_DIR/agents"
 mkdir -p "$TARGET_CLAUDE_DIR/commands"
 mkdir -p "$TARGET_CLAUDE_DIR/rules"
+mkdir -p "$TARGET_CLAUDE_DIR/references"
 
 # CLAUDE.md を結合生成
 echo "CLAUDE.md を生成中..."
@@ -88,6 +89,13 @@ echo "rules/ をコピー中..."
 cp "$DOT_CLAUDE_DIR/rules/"*.md "$TARGET_CLAUDE_DIR/rules/"
 echo "  → $TARGET_CLAUDE_DIR/rules/ ($(ls "$DOT_CLAUDE_DIR/rules/"*.md | wc -l) files)"
 
+# references をコピー
+if ls "$DOT_CLAUDE_DIR/references/"*.md 1> /dev/null 2>&1; then
+  echo "references/ をコピー中..."
+  cp "$DOT_CLAUDE_DIR/references/"*.md "$TARGET_CLAUDE_DIR/references/"
+  echo "  → $TARGET_CLAUDE_DIR/references/ ($(ls "$DOT_CLAUDE_DIR/references/"*.md | wc -l) files)"
+fi
+
 # settings.json をコピー
 echo "settings.json をコピー中..."
 cp "$DOT_CLAUDE_DIR/settings.json" "$TARGET_CLAUDE_DIR/settings.json"
@@ -105,7 +113,8 @@ echo "配置されたもの:"
 echo "  - CLAUDE.md (base + project 結合)"
 echo "  - .claude/agents/ (20 エージェント)"
 echo "  - .claude/commands/ (4 コマンド: /design, /dev-start, /dev-task, /dev-rollback)"
-echo "  - .claude/rules/ (2 ルール: bash-single-line, no-tailwind)"
+echo "  - .claude/rules/"
+echo "  - .claude/references/ (詳細ガイド)"
 echo "  - .claude/settings.json"
 echo "  - tmp/ (一時ファイル用)"
 echo ""
