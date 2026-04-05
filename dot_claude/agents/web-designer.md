@@ -4,7 +4,7 @@ description: WEBデザイン（CSSスタイリング）の専門エージェン�
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
 isolation: worktree
-maxTurns: 20
+maxTurns: 40
 permissionMode: acceptEdits
 color: green
 effort: medium

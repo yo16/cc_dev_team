@@ -3,7 +3,7 @@ name: frontend-test-reviewer
 description: フロントエンドテスト設計の十分性をチェックする専門エージェント。テストエンジニアが作成したテストが、要件を十分にカバーしているか、境界値や異常系が網羅されているかを検証する。テスト実行前に行う。
 tools: Read, Grep, Glob
 model: sonnet
-maxTurns: 10
+maxTurns: 20
 permissionMode: plan
 color: yellow
 effort: high

@@ -12,7 +12,7 @@ mcpServers:
       env:
         SUPABASE_URL: "${SUPABASE_URL}"
         SUPABASE_SERVICE_KEY: "${SUPABASE_SERVICE_KEY}"
-maxTurns: 20
+maxTurns: 40
 permissionMode: acceptEdits
 color: magenta
 memory: project

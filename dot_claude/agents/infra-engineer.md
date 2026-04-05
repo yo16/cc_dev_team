@@ -3,7 +3,7 @@ name: infra-engineer
 description: インフラ・デプロイの専門エージェント。デプロイ設定、環境変数管理、CI/CDパイプライン構築を行う。デプロイ先（Vercel, Netlify, Cloudflare Pages等）やフレームワークはCLAUDE.mdの技術スタックに従う。
 tools: Read, Write, Edit, Bash
 model: sonnet
-maxTurns: 15
+maxTurns: 30
 permissionMode: acceptEdits
 color: white
 effort: medium

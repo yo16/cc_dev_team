@@ -3,7 +3,7 @@ name: db-designer
 description: 汎用データベース設計の専門エージェント。スキーマ設計、正規化、ER図、インデックス戦略、マイグレーション方針を設計ドキュメントとして作成する。特定のDBサービスに依存しない汎用的なRDB設計を行う。
 tools: Read, Write, Grep, Glob
 model: sonnet
-maxTurns: 15
+maxTurns: 30
 permissionMode: acceptEdits
 color: magenta
 effort: high
