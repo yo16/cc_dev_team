@@ -101,6 +101,87 @@ echo "settings.json をコピー中..."
 cp "$DOT_CLAUDE_DIR/settings.json" "$TARGET_CLAUDE_DIR/settings.json"
 echo "  → $TARGET_CLAUDE_DIR/settings.json"
 
+# settings.local.json にフルパス許可ルールを追加
+# 既存ファイルがあればマージ、なければ新規作成
+echo "settings.local.json を設定中..."
+
+# Windows(MSYS/Git Bash)の場合はパスをスラッシュ形式に正規化
+PROJECT_PATH="$PROJECT_DIR"
+case "$(uname -s)" in
+    MINGW*|MSYS*|CYGWIN*)
+        # /c/Users/... 形式を C:/Users/... 形式に変換
+        PROJECT_PATH="$(cd "$PROJECT_DIR" && pwd -W 2>/dev/null || pwd)"
+        # バックスラッシュをスラッシュに統一
+        PROJECT_PATH="${PROJECT_PATH//\\//}"
+        ;;
+    *)
+        PROJECT_PATH="$(cd "$PROJECT_DIR" && pwd)"
+        ;;
+esac
+
+# 追加するフルパスルール一覧
+FULLPATH_RULES=(
+    "Bash(ls ${PROJECT_PATH})"
+    "Bash(ls ${PROJECT_PATH}/*)"
+    "Bash(mkdir ${PROJECT_PATH}/*)"
+    "Bash(mkdir -p ${PROJECT_PATH}/*)"
+    "Bash(rm ${PROJECT_PATH}/*)"
+    "Bash(cp ${PROJECT_PATH}/*)"
+    "Bash(cat ${PROJECT_PATH}/*)"
+    "Bash(node ${PROJECT_PATH}/*)"
+    "Bash(git -C ${PROJECT_PATH} *)"
+    "Bash(git -C \"${PROJECT_PATH}\" *)"
+)
+
+SETTINGS_LOCAL="$TARGET_CLAUDE_DIR/settings.local.json"
+
+if [ -f "$SETTINGS_LOCAL" ]; then
+    # 既存ファイルがある場合: 重複しないルールだけ追加
+    echo "  既存の settings.local.json を検出。フルパスルールをマージします..."
+    EXISTING=$(cat "$SETTINGS_LOCAL")
+    for rule in "${FULLPATH_RULES[@]}"; do
+        if echo "$EXISTING" | grep -qF "$rule"; then
+            continue
+        fi
+        # permissions.allow 配列の最後のエントリの後にカンマ+新ルールを挿入
+        # jq があれば使う、なければ sed で対応
+        if command -v jq &> /dev/null; then
+            EXISTING=$(echo "$EXISTING" | jq --arg r "$rule" '.permissions.allow += [$r]')
+        else
+            # jq がない場合: allow配列の最後の要素の後に追加
+            # 最後の "]" (permissions.allow の閉じ括弧) の直前に挿入
+            EXISTING=$(echo "$EXISTING" | sed '0,/\(.*\)"$/{ /permissions/,/\]/{
+                /\]/i\      "'"$rule"'",
+            }}' 2>/dev/null || echo "$EXISTING")
+        fi
+    done
+    # jq がある場合は整形して書き出し
+    if command -v jq &> /dev/null; then
+        echo "$EXISTING" | jq '.' > "$SETTINGS_LOCAL"
+    else
+        echo "$EXISTING" > "$SETTINGS_LOCAL"
+    fi
+else
+    # 新規作成
+    cat > "$SETTINGS_LOCAL" << SETTINGS_EOF
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls ${PROJECT_PATH})",
+      "Bash(ls ${PROJECT_PATH}/*)",
+      "Bash(mkdir ${PROJECT_PATH}/*)",
+      "Bash(mkdir -p ${PROJECT_PATH}/*)",
+      "Bash(rm ${PROJECT_PATH}/*)",
+      "Bash(cp ${PROJECT_PATH}/*)",
+      "Bash(cat ${PROJECT_PATH}/*)",
+      "Bash(node ${PROJECT_PATH}/*)"
+    ]
+  }
+}
+SETTINGS_EOF
+fi
+echo "  → $SETTINGS_LOCAL (フルパス: ${PROJECT_PATH})"
+
 # tmp ディレクトリ作成
 mkdir -p "$PROJECT_DIR/tmp"
 echo "tmp/ を作成..."
@@ -116,6 +197,7 @@ echo "  - .claude/commands/ (4 コマンド: /design, /dev-start, /dev-task, /de
 echo "  - .claude/rules/"
 echo "  - .claude/references/ (詳細ガイド)"
 echo "  - .claude/settings.json"
+echo "  - .claude/settings.local.json (フルパス許可ルール)"
 echo "  - tmp/ (一時ファイル用)"
 echo ""
 echo "次のステップ:"

@@ -48,7 +48,7 @@
       "Bash(npx create-next-app *)",
 
       "Bash(mkdir *)",
-      "Bash(rm tmp/*)",
+      "Bash(rm *)",
       "Bash(cp *)",
       "Bash(ls)",
       "Bash(ls *)",
@@ -71,7 +71,6 @@
     "ask": [
       "Bash(git push *)",
       "Bash(git branch -D *)",
-      "Bash(rm *)",
       "Bash(npm uninstall *)"
     ]
   },
@@ -86,6 +85,19 @@
           {
             "type": "command",
             "command": "npx next lint --quiet 2>&1 || true"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command":
+              "[System.Media.SystemSounds]::Exclamation.Play()"
           }
         ]
       }
