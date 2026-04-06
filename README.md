@@ -12,20 +12,24 @@ Claude Code で Web アプリを開発するための **エージェントチー
 ## セットアップ
 
 ```bash
-# 1. テンプレートをコピーして、技術スタック等を編集
-cp dot_claude/CLAUDE.project.template.md dot_claude/CLAUDE.project.md
+# 1. dot_claude/ をプロジェクトの .claude/ にコピー
+cp -r /path/to/cc_dev_team/dot_claude /path/to/my-project/.claude
 
-# 2. プロジェクトに配置
-bash dot_claude/scripts/setup.sh /path/to/my-project
+# 2. テンプレートをコピーして、技術スタック等を編集
+cp .claude/CLAUDE.project.template.md .claude/CLAUDE.project.md
+
+# 3. セットアップ実行（CLAUDE.md生成、settings.local.json作成）
+bash .claude/scripts/setup.sh
 ```
 
 これにより、プロジェクトに以下が配置されます：
-- `CLAUDE.md` — PM ワークフロー定義
 - `.claude/agents/` — 20 エージェント
 - `.claude/commands/` — 4 コマンド (`/design`, `/dev-start`, `/dev-task`, `/dev-rollback`)
 - `.claude/rules/` — 自動適用ルール
 - `.claude/references/` — 詳細ガイド
 - `.claude/settings.json` — パーミッション設定
+- `CLAUDE.md` — PM ワークフロー定義（setup.sh が生成）
+- `.claude/settings.local.json` — フルパス許可ルール（setup.sh が生成）
 
 ## 使い方
 

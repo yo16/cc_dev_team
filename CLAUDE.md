@@ -10,9 +10,10 @@ Claude Code で Web アプリを開発する際に使う **エージェント・
 ## 想定する利用シーン
 
 1. 新しいWebアプリプロジェクトを作る
-2. `dot_claude/CLAUDE.project.template.md` をコピーして技術スタックを選択・編集する
-3. `bash dot_claude/scripts/setup.sh /path/to/my-project` を実行する
-4. プロジェクトの `.claude/` にエージェント群が配置され、`/design` → `/dev-start` → `/dev-task` のワークフローで開発を進める
+2. `dot_claude/` をプロジェクトの `.claude/` にコピーする
+3. `.claude/CLAUDE.project.template.md` を `.claude/CLAUDE.project.md` にコピーして技術スタックを選択・編集する
+4. `bash .claude/scripts/setup.sh` を実行する（CLAUDE.md生成、settings.local.json作成）
+5. `/design` → `/dev-start` → `/dev-task` のワークフローで開発を進める
 
 ## ディレクトリ構成
 
