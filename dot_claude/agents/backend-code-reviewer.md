@@ -5,7 +5,7 @@ tools: Read, Grep, Glob, Bash
 model: sonnet
 maxTurns: 20
 permissionMode: plan
-color: yellow
+color: purple
 effort: high
 ---
 

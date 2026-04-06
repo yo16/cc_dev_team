@@ -5,7 +5,7 @@ tools: Read, Grep, Glob
 model: sonnet
 maxTurns: 20
 permissionMode: plan
-color: yellow
+color: cyan
 effort: high
 ---
 

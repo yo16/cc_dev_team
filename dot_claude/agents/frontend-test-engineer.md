@@ -6,7 +6,7 @@ model: sonnet
 isolation: worktree
 maxTurns: 40
 permissionMode: acceptEdits
-color: blue
+color: green
 effort: medium
 ---
 

@@ -5,7 +5,7 @@ tools: Read, Write, Bash
 model: sonnet
 maxTurns: 20
 permissionMode: acceptEdits
-color: white
+color: red
 effort: low
 ---
 

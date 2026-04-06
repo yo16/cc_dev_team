@@ -5,7 +5,7 @@ tools: Read, Write, Grep, Glob, Bash
 model: opus
 maxTurns: 50
 permissionMode: acceptEdits
-color: blue
+color: purple
 memory: project
 effort: high
 ---
