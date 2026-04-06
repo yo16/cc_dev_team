@@ -20,6 +20,30 @@ effort: low
 - コードの実装・編集は行わない。
 - git操作はこのエージェントのみが行う。
 
+### 別ディレクトリで git を実行したい場合 — `git -C <path>` を使う
+
+`cd` と `&&` でチェインするのは**絶対禁止**。代わりに `git -C <path>` オプションを使う。
+`-C <path>` は、指定したディレクトリに移動してから git コマンドを実行する公式オプション。
+
+```bash
+# NG: cd とチェイン（permissions.allow にマッチしない）
+cd /path/to/project && git status
+
+# OK: -C オプション（単一行、permissions.allow にマッチする）
+git -C /path/to/project status
+git -C /path/to/project add src/app/page.tsx
+git -C /path/to/project commit -F tmp/commit-msg.txt
+git -C /path/to/project checkout -b feature/bd-abc123
+git -C /path/to/project merge feature/bd-abc123
+git -C /path/to/project log --oneline -10
+```
+
+**Worktree で作業する場合も同様:**
+```bash
+git -C .claude/worktrees/abc123 status
+git -C .claude/worktrees/abc123 add .
+```
+
 ## ブランチ戦略
 
 ### ブランチ構成
