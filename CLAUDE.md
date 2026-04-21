@@ -42,11 +42,12 @@ dot_claude/                          ← 成果物（プロジェクトにコピ
 │   ├── backend-test-reviewer.md     #   BE テスト十分性チェック
 │   ├── frontend-test-judge.md       #   FE テスト結果判定
 │   └── backend-test-judge.md        #   BE テスト結果判定
-├── commands/                        # 4 スラッシュコマンド
+├── commands/                        # 5 スラッシュコマンド
 │   ├── design.md                    #   /design — 設計フェーズ
 │   ├── dev-start.md                 #   /dev-start — 開発開始
 │   ├── dev-task.md                  #   /dev-task <id> — タスクパイプライン
-│   └── dev-rollback.md              #   /dev-rollback <id> — ロールバック
+│   ├── dev-rollback.md              #   /dev-rollback <id> — ロールバック
+│   └── fix-issue.md                 #   /fix-issue <問題> — バグ/改善要望を TDD フローで修正
 ├── rules/                           # 自動適用ルール
 │   ├── bash-single-line.md          #   Bash 単一行実行（常時）
 │   ├── no-tailwind.md               #   Tailwind 禁止（常時）
