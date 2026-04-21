@@ -58,7 +58,20 @@ dot_claude/                          ← 成果物（プロジェクトにコピ
 ├── scripts/
 │   └── setup.sh                     # プロジェクトへの配置スクリプト
 └── settings.json                    # パーミッション・フック設定
+
+specific_set/                        ← オプション（プロジェクトごとに手動でコピーするリソース）
+├── business_marketing/agents/       # ビジネス・マーケティング系エージェント（12個）
+└── seo/skills/                      # SEO・マーケ系 Claude Skill（SKILL.md + evals + references）
+
+tmp/                                 ← 作業用（.gitignore 済み）
 ```
+
+### dot_claude/ と specific_set/ の使い分け
+
+- `dot_claude/` は **全 Web アプリプロジェクトで常に使う** 成果物。`setup.sh` の対象。
+- `specific_set/` は **プロジェクトごとに必要なものだけ手動コピーする** 追加リソース。`setup.sh` はコピーしない。
+  - 例: マーケティング要素のある SaaS → `specific_set/seo/skills/` の一部を `.claude/skills/` にコピー
+  - 例: ビジネス企画フェーズがある案件 → `specific_set/business_marketing/agents/` の一部を `.claude/agents/` にコピー
 
 ## 技術的な前提
 
@@ -96,7 +109,9 @@ dot_claude/                          ← 成果物（プロジェクトにコピ
 
 ## このリポジトリでの作業ルール
 
-- `dot_claude/` 以下のファイルを編集・追加する
+- `dot_claude/` 以下のファイルを編集・追加する（全プロジェクト共通の成果物）
+- `specific_set/` はオプションリソース。`dot_claude/` には含めず、別系統として管理する
 - このリポジトリの `.claude/` は**このリポジトリ自体のローカル設定**であり、成果物ではない
+- `tmp/` は作業用の一時ファイル置き場（`.gitignore` 済み）
 - コミットメッセージは Conventional Commits（`feat:`, `fix:`, `docs:` 等）
 - Bash コマンドは `&&` 等でチェインしない（1つずつ個別に実行）

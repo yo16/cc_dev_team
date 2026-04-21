@@ -76,7 +76,7 @@ bash .claude/scripts/setup.sh
 ## ディレクトリ構成
 
 ```
-dot_claude/
+dot_claude/                        # 全プロジェクトに常にコピーする一式
 ├── CLAUDE.base.md                 # PM ワークフロー定義（全プロジェクト共通）
 ├── CLAUDE.project.template.md     # プロジェクト固有設定テンプレート
 ├── agents/                        # 20 サブエージェント
@@ -85,7 +85,17 @@ dot_claude/
 ├── references/                    # 詳細ガイド
 ├── scripts/setup.sh               # プロジェクトへの配置スクリプト
 └── settings.json                  # パーミッション・フック設定
+
+specific_set/                      # 必要なプロジェクトだけに手動でコピーする追加リソース
+├── business_marketing/agents/     # ビジネス・マーケティング系エージェント
+└── seo/skills/                    # SEO・マーケティング系 Claude Skill
 ```
+
+## オプションリソース（specific_set/）
+
+`specific_set/` 以下は **全プロジェクトには配布しない** 追加リソース集です。
+必要なプロジェクトにだけ、対象ディレクトリを `.claude/agents/` や `.claude/skills/` に手動でコピーして使います。
+`setup.sh` はこれらをコピーしません。
 
 ## ライセンス
 
