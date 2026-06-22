@@ -83,11 +83,12 @@ Beadsタスク化→ブランチ作成→**失敗するテスト作成（Red）*
 | Beads管理者 | `beads-manager.md` | タスク作成・更新・依存関係・ロールバック管理 |
 | Git管理者 | `git-manager.md` | ブランチ・コミット・マージ・Worktree管理 |
 
-### フレームワークスペシャリスト層
+### フレームワーク/プラットフォームスペシャリスト層
 | エージェント | ファイル | 役割 |
 |---|---|---|
 | Next.jsスペシャリスト | `nextjs-specialist.md` | Next.js固有の設計・実装アドバイザー |
 | React+Viteスペシャリスト | `react-vite-specialist.md` | React+Vite (SPA) 固有の設計・実装アドバイザー |
+| GCPスペシャリスト | `gcp-specialist.md` | GCP固有の設計・実装アドバイザー（公式ドキュメントをライブ参照） |
 
 ### 実装層
 | エージェント | ファイル | 役割 |

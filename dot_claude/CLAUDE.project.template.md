@@ -23,6 +23,22 @@
 - スタイリング: CSS Modules（Tailwind CSS は禁止）
 <!-- 不要な選択肢を削除し、1つに確定してください -->
 
+### クラウド
+- GCP（Cloud Run / Firestore / Cloud SQL / BigQuery / IAM 等）を使う場合は `gcp-specialist` が助言する（公式ドキュメントをライブ参照）
+
+## 外部連携が必要なエージェントのセットアップ
+
+一部のエージェントは外部サービス連携（MCP・環境変数）が必要です。
+**具体的な設定手順は各エージェント定義 `agents/*.md` の「セットアップ / 前提条件」節を参照してください**（設定方法はエージェントと同じ場所に置く方針）。
+このプロジェクトで使うエージェントの分だけ、環境変数を設定してください。
+
+| エージェント | 必要な設定 | 詳細 |
+|---|---|---|
+| `supabase-specialist` | `SUPABASE_URL`, `SUPABASE_SERVICE_KEY` | `agents/supabase-specialist.md` |
+| `gcp-specialist` | `GOOGLE_DEV_KNOWLEDGE_API_KEY` | `agents/gcp-specialist.md`（最新化体制は `references/gcp-maintenance.md`） |
+<!-- 外部連携エージェントを追加したら、この表に1行足し、詳細は当該エージェントの「セットアップ / 前提条件」節に書く -->
+<!-- 環境変数は .env 等に置き、リポジトリにはコミットしない -->
+
 ## Git戦略
 
 ### ブランチ構成

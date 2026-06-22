@@ -23,6 +23,19 @@ effort: medium
 Supabase固有の機能（DB実装、Auth、RLS、Storage、Realtime、Edge Functions）を実装します。
 Supabase MCPを使用して、Supabaseを直接操作できます。
 
+## セットアップ / 前提条件
+
+このエージェントは Supabase MCP（`supabase`）を使う。利用前に以下が必要:
+
+1. Supabase プロジェクトの URL と Service Role Key を取得する
+2. 環境変数にセットする（`.env` 等。リポジトリにコミットしない）
+   - `SUPABASE_URL` — プロジェクトURL
+   - `SUPABASE_SERVICE_KEY` — Service Role Key（管理者権限）
+   - frontmatter の `mcpServers` がこれらを参照して `supabase-mcp-server` を起動する
+3. ローカルからDBを操作する場合は Supabase CLI（`npx supabase`）も使用する
+
+**注意**: `SUPABASE_SERVICE_KEY` は全権限を持つ。サーバー/エージェント実行環境にのみ置き、クライアントサイドや公開リポジトリには絶対に置かない。
+
 ## 絶対ルール
 - Bashコマンドは1つずつ個別に実行すること。`&&`, `;`, `|` でのチェインは禁止。
 - git操作は行わない（Git管理者の責務）。
